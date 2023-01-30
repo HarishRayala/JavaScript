@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #navbar {
+            display: flex;
+            background-color: teal;
+            justify-content: space-around;
+            padding: 5px;
+        } 
+        a{
+            text-decoration: none;
+            color: blue;
+        }
+        #navbar a:hover{
+            color: white;
+        }
+        #navbar a{
+            cursor: pointer;
+        }
+        #container{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);;
+            grid-template-rows: auto;
+            gap: 20px;
+        }
+         #box{
+            display: flex;
+            justify-content: space-evenly;
+            
+        }
+        #display{
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <p id="display"></p>
+    <button><a href="payment.html">CheckOut</a></button>
+    <div id="navbar">
+        <p> <a href="men.html">Men</a> </p>
+        <p><a href="women.html">Women</a></p>
+        <p><a href="signup.html">Signup</a></p>
+        <p><a href="login.html">Login</a></p>
+    </div>
+     <input type="text" name="" id="disc"/>
+     <button id="promo">Apply Promo</button>
+    <div id="container">
+
+    </div>
+</body>
+</html>
+<script>
+   var cartLocal=JSON.parse(localStorage.getItem("cart"));
+   console.log(cartLocal);
+
+   var total=cartLocal.reduce(function(sum,ele,index,arr){
+       return sum+Number(ele.price);
+   },0)
+   console.log(total);
+
+   var length=cartLocal.length;
+   document.querySelector("#display").innerText=`You have ${length} items in the cart and total is ${total}`;
+
+   cartLocal.map(function(ele){
+    var divdata=document.createElement("div");
+      var image=document.createElement("img");
+      image.src=ele.image_url;
+
+      var itemName=document.createElement("p");
+      itemName.innerText=ele.name;
+
+      var box=document.createElement("div");
+      box.setAttribute("id","box");
+      var price=document.createElement("p");
+      price.innerText=ele.price;
+
+      var strike=document.createElement("p");
+      strike.innerText=ele.strikedoffprice;
+      strike.style.textDecoration="line-through";
+      box.append(price,strike);
+      divdata.append(image,itemName,box);
+      document.querySelector("#container").append(divdata);
+   });
+
+   
+   document.querySelector("#promo").addEventListener("click",myclick);
+   function myclick(){
+    var promo=document.querySelector("#disc").value;
+   if(promo=="masai30"){
+     var discount=(total/100*30);
+     discount=total-discount;
+     console.log(discount);
+     document.querySelector("#display").innerText=`You have ${length} items in the cart and total is ${discount}`;
+      alert("You Got 30% discount!!!!!!!!!!!!!!!!")
+    }else{
+        alert("Please Enter Valid Data......")
+    }
+}
+</script>

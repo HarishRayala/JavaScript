@@ -1,0 +1,18 @@
+#navbar{
+    height: 50px;
+    width: auto;
+    text-align: center;
+    background-color: #141a28;
+}
+body{
+    background-color: #141a28;
+}
+h1{
+    color: white;
+}
+.innerBox{
+    background-color: white;
+    text-align: center;
+    width: 300px;
+    margin: auto;
+}

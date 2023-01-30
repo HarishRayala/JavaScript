@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        #navbar {
+            display: flex;
+            background-color: teal;
+            justify-content: space-around;
+            padding: 5px;
+        } 
+        a{
+            text-decoration: none;
+            color: blue;
+        }
+        #navbar a:hover{
+            color: white;
+        }
+        #navbar a{
+            cursor: pointer;
+        }
+        #main{
+            margin: auto;
+            height: 300px;
+            width: 30%;
+            border: 1px solid;
+            padding: auto;
+            text-align: center;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar">
+        <p> <a href="men.html">Men</a> </p>
+        <p><a href="women.html">Women</a></p>
+        <p><a href="signup.html">Signup</a></p>
+        <p><a href="login.html">Login</a></p>
+    </div>
+    <div id="main">
+    <h1>Login Page</h1>
+    <form>
+        <input id="email" type="text" placeholder="Enter email" /><br><br>
+        <input id="pass" type="password" placeholder="Enter password" /><br><br>
+        <input type="submit" value="Login" />
+      </form>
+    </div>
+</body>
+</html>
+
+<script>
+    document.querySelector("form").addEventListener("submit",myLogin);
+    var regiUser=JSON.parse(localStorage.getItem("SignupData"))||[];
+    function myLogin(){
+        event.preventDefault();
+        var email=document.querySelector("#email").value;
+        var password=document.querySelector("#pass").value;
+        console.log(email,password);
+        var flag=false;
+        for(var i=0;i<regiUser.length;i++){
+            console.log(regiUser[i]);
+            if(regiUser[i].email==email && regiUser[i].password==password){
+               flag=true;
+               break;
+            }
+        }
+        if(flag==true){
+                alert("Login Successfully!!!");
+                window.location.href="men.html";
+            }else{
+                alert("Login Failed!.....")
+                window.location.href="login.html";
+                
+        }
+    }
+</script>

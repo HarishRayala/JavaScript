@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script
+      src="https://kit.fontawesome.com/24c494a6b6.js"
+      crossorigin="anonymous"
+    ></script>
+<style>
+    #container{
+        display: flex;
+        border: 1px solid black;
+        background-color: teal;
+    }
+    #input,
+    #output{
+        flex: 1;
+        margin: 5%;
+        height: 300px;
+        border: 1px solid black;
+        background-color: bisque;
+    }
+    #input-text{
+        width: 90%;
+        height: 250px;
+        background-color: bisque;
+    }
+    #out-lang,#inp-lang{
+        width: 100px;
+        margin-right: 10px;
+    }
+</style>
+<body>
+    <div id="container">
+        <div id="input">
+            <button onclick="Translate()">Translate</button>
+            <select name="" id="inp-lang">
+                <option value="en">English</option>
+                <option value="hi">Hindi</option>
+            </select>
+            <textarea name="input-text" id="input-text" onchange="debounce(main,1500)" ></textarea>
+        </div>
+        <div id="output">
+            <div style="display: flex;">
+                <select name="" id="out-lang" onchange="main()">
+                    <option value="en">English</option>
+                    <option value="hi">Hindi</option>
+                </select>
+                <audio id="speaker"  crossorigin="anonymous" controls></audio>
+            </div>
+            
+            <p id="output1"></p>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+//  helper function : which save your time and all that stuff
+    function read(id){
+        
+        return document.getElementById(id).value;
+    }
+
+    function create(w){
+        return document.createElement(w);
+    }
+
+    
+    async function Translate(){
+        // text to translate
+        try{
+            const input = read("input-text");
+            const input_lang = read("inp-lang");
+            console.log(input_lang);
+            const output_lang = read("out-lang");
+            console.log(output_lang)
+            const res = await fetch(`https://libretranslate.de/translate`, {
+                method:"POST",
+                body: JSON.stringify({
+                    q: input,
+                    source: input_lang,
+                    target:output_lang,
+                    format:"text"
+                }),
+                // additional information avout our request that server might need to know
+
+                headers:{
+                    "Content-Type":"application/json",
+                }
+            });
+            const { translatedText } = await res.json();
+            return translatedText;
+            // const data = await res.json();
+            // console.log(data);
+
+        } catch(err){
+            console.log("err",err);
+        }
+        
+
+    }
+
+    async function main(){
+        let data = await Translate();
+        if(data==undefined) return false;
+        document.getElementById("output1").innerHTML= null;
+        document.getElementById("output1").innerHTML = data;
+        my1()
+    }
+
+    let id;
+    function debounce(main,delay)
+    {
+        if(id){
+            clearTimeout(id);
+        }
+        id = setTimeout(function(){
+            main();
+        },delay);
+    }
+
+    // document.querySelector("#speaker").addEventListener("click",my1());
+    
+    async function my1(){
+        let lang = read("out-lang");
+        
+        if(lang=="en") lang= "en-us";
+        else if(lang=="fr") lang = "fr-fr";
+        else lang = "hi-in";
+        let txt = await Translate();
+        console.log(lang)
+        const url = `https://api.voicerss.org/?key=2534d47654a74f8398ee34238237be40&hl=${lang}&c=MP3&src=${txt}`
+
+        let a = document.querySelector("#speaker");
+        a.src= url;
+        
+
+        fetch(url).then((res) =>{
+            // console.log(res);
+            // window.SpeechRecognitionResult = res;
+            // console.log(data);
+        }).catch((err)=>{
+            console.log("err",err);
+        })
+
+
+    }
+    
+
+
+   
+
+
+</script>

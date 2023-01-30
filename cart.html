@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+      }
+      .innerDiv {
+        display: flex;
+        justify-content: space-between;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Admin Dashboard</h1>
+    <form>
+      <input id="img" type="text" placeholder="enter image url" />
+      <input id="name" type="text" placeholder="enter name of product" />
+      <input id="price" type="text" placeholder="enter price" />
+      <input id="strk" type="text" placeholder="enter striked off price" />
+      <input type="submit" value="Add Product" />
+    </form>
+
+    <div id="container">
+      <!-- append my output here -->
+      <!-- <div>
+                  <img src="" alt="">
+                  <p>name</p>
+                  <div display-flex>
+                        <p>price</p>
+                        <p>Striked off price</p>
+                  </div>
+            </div>
+            <div>
+                  <img src="" alt="">
+                  <p>name</p>
+                  <div display-flex>
+                        <p>price</p>
+                        <p>Striked off price</p>
+                  </div>
+            </div>
+            <div>
+                  <img src="" alt="">
+                  <p>name</p>
+                  <div display-flex>
+                        <p>price</p>
+                        <p>Striked off price</p>
+                  </div>
+            </div>
+            <div>
+                  <img src="" alt="">
+                  <p>name</p>
+                  <div display-flex>
+                        <p>price</p>
+                        <p>Striked off price</p>
+                  </div>
+            </div> -->
+    </div>
+  </body>
+</html>
+
+<script>
+  var data1 = [
+    {
+      imgUrl:
+        "https://preview.colorlib.com/theme/eiser/img/product/inspired-product/xi1.jpg.pagespeed.ic.mkSk-Af1ka.webp",
+      name: "LATEST MEN’S SNEAKER",
+      price: "$25.00",
+      strikedOffPrice: "$95.00",
+    },
+    {
+      imgUrl:
+        "https://preview.colorlib.com/theme/eiser/img/product/inspired-product/xi2.jpg.pagespeed.ic.uBrpABaJqp.webp",
+      name: "LATEST MEN’S SNEAKER",
+      price: "$35.00",
+      strikedOffPrice: "$100.00",
+    },
+    {
+      imgUrl:
+        "https://preview.colorlib.com/theme/eiser/img/product/inspired-product/xi3.jpg.pagespeed.ic.iO_cFEPy2K.webp",
+      name: "LATEST MEN’S SNEAKER",
+      price: "$35.00",
+      strikedOffPrice: "$100.00",
+    },
+    {
+      imgUrl:
+        "https://preview.colorlib.com/theme/eiser/img/product/inspired-product/xi4.jpg.pagespeed.ic.kmiQW8I5wx.webp",
+      name: "LATEST MEN’S SNEAKER",
+      price: "$35.00",
+      strikedOffPrice: "$100.00",
+    },
+  ];
+
+  //   var adminData = [
+  //     { img: "", name: "", price: "", strikedOffPrice: "" },
+  //     {},
+  //     {},
+  //     {},
+  //   ];
+
+  var adminData = [];
+
+  document.querySelector("form").addEventListener("submit", addData);
+
+  function addData() {
+    //console.log("inside function")
+    event.preventDefault();
+    var obj = {
+      imgUrl: document.querySelector("#img").value,
+      name: document.querySelector("#name").value,
+      price: document.querySelector("#price").value,
+      strikedOffPrice: document.querySelector("#strk").value,
+    };
+    console.log(obj);
+    adminData.push(obj);
+    displayData(adminData);
+  }
+
+  function displayData(adminData) {
+    adminData.forEach(function (elem) {
+      // 4 times
+      var div = document.createElement("div");
+
+      var img = document.createElement("img");
+      img.src = elem.imgUrl;
+
+      var name = document.createElement("p"); // <p>Latest </p>
+      name.innerText = elem.name;
+
+      var priceDiv = document.createElement("div");
+      priceDiv.setAttribute("class", "innerDiv");
+
+      var price = document.createElement("p");
+      price.innerText = elem.price;
+
+      var strikedOffPrice = document.createElement("p");
+      strikedOffPrice.innerText = elem.strikedOffPrice;
+      strikedOffPrice.style.textDecoration = "line-through";
+
+      priceDiv.append(price, strikedOffPrice);
+
+      div.append(img, name, priceDiv);
+
+      document.querySelector("#container").append(div);
+    });
+  }
+
+  // 1.imgUrl- , 2.name , 3.price, 4.strikedOffPrice
+</script>

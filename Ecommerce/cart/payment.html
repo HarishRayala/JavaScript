@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            align-items: center;
+            border: 1px solid;
+            width: 30%;
+            padding: 20px;
+            margin: auto;
+        }
+        h1{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>CheckOut Page</h1>
+    <div>
+        <form>
+            <table>
+                <tr>
+                    <td> Enter Card No:</td>
+                    <td> <input type="number" id="card" placeholder="Enter card Number"/></td>
+                </tr>
+                <tr>
+                    <td> Enter CVV : </td>
+                    <td> <input type="number" id="cvv" placeholder="Enter Cvv Number"/></td>
+                </tr>
+                <tr>
+                    <td> Expiry Date:</td>
+                    <td><input type="date" id="date" /></td>
+                </tr>
+                <tr>
+                    <td>Enter CardHolder Name :</td>
+                    <td><input type="text" id="name" placeholder="Enter Your Name"/></td>
+                </tr>
+                <tr><td><input type="submit" id="submit"></td></tr>
+            </table>
+      
+       
+        </form>
+    </div>
+   
+</body>
+</html>
+<script>
+    document.querySelector("form").addEventListener("submit",mysubmit);
+    
+    function mysubmit(){
+    event.preventDefault();
+    var cardNo =document.querySelector("#card").value;
+    var cvv =document.querySelector("#cvv").value;
+    var date =document.querySelector("#date").value;
+    var name =document.querySelector("#name").value;
+    console.log(cardNo,cvv,date,name);
+    if(cardNo==""|| cvv=="" || date=="" || name==""){
+       
+        alert("Something went wrong.....");
+    }else{
+        window.location.href="otp.html";
+       
+    }
+    }
+    
+</script>
