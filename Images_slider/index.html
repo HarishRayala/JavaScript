@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .carousel-inner {
+            display: flex;
+            justify-content: center;
+        }
+
+        .carousel-item {
+            width: 80%;
+            height: 80%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="carousel-inner">
+        <div id="first-slide">
+            <img class="carousel-item"
+                src="https://static.toiimg.com/thumb/msid-92233948,width-1070,height-580,resizemode-75/92233948,pt-32,y_pad-40/92233948.jpg"
+                alt="First slide">
+        </div>
+        <div id="second-slide">
+            <img class="carousel-item"
+                src="https://iso.500px.com/wp-content/uploads/2016/03/stock-photo-142984111-1500x1000.jpg"
+                alt="Second slide">
+        </div>
+        <div id="third-slide">
+            <img class="carousel-item" src="https://wallpapers.com/images/featured/2ygv7ssy2k0lxlzu.jpg"
+                alt="Third slide">
+        </div>
+        <div id="fourth-slide">
+            <img class="carousel-item"
+                src="https://i.pinimg.com/originals/66/b7/f6/66b7f6e5ad85cdfeab3459f2b5480407.jpg" alt="fourth-slide">
+        </div>
+    </div>
+    <main></main>
+</body>
+<script>
+
+    document.querySelector("#first-slide").addEventListener("click", FirstSlide);
+    document.querySelector("#second-slide").addEventListener("click", SecondSlide);
+    document.querySelector("#third-slide").addEventListener("click", ThirdSlide);
+    document.querySelector("#fourth-slide").addEventListener("click", FourthSlide);
+
+    function FirstSlide() {
+        console.log("FirstSlide clicked");
+    }
+    function SecondSlide() {
+        console.log("SecondSlide Clicked");
+    }
+    function ThirdSlide() {
+        console.log("Third Slide Clicked");
+        let box=document.createElement("div");
+        let roll=document.createElement("a");
+        roll.href="#"
+        roll.textContent="Roll Dice"
+        roll.addEventListener("click",RollFun);
+        let result=document.createElement("h3")
+        let diceimagebox=document.createElement("div");
+        diceimagebox.setAttribute("id","diceimage")
+        box.append(roll,result,diceimagebox);
+        
+        function RollFun(){
+            let rand=Math.floor(Math.random()*6+1);
+            document.querySelector("#diceimage").innerHTML="<img src='./image/"+rand+".png'/>";
+            console.log(rand)
+            result.textContent=`Your Score is ${rand}`
+        }
+        document.querySelector("main").append(box);
+    }
+    function FourthSlide() {
+        console.log("Fourth Slide Clicked");
+    }
+</script>
+
+</html>
