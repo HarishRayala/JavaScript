@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Object Oriented Programming</h1>
+</body>
+</html>
+
+<script>
+
+//ES6 classes - Create object
+
+    // class Car {
+    //     constructor(n,b) {
+    //         this.name=n;
+    //         this.brand=b;
+    //     }
+    // }
+
+    // let c1= new Car("POLO","Volkswagen");
+    // console.log("c1:",c1)
+
+
+//Object oriented programming
+
+//1.Inheritance
+
+// class Car {
+//         constructor(n,b) {
+//             this.name=n;
+//             this.wheels=4;
+//             this.brand=b;
+//         }
+//     }
+
+    // let c1= new Car("POLO","Volkswagen");
+    // console.log("c1:",c1);
+
+// class sedan extends Car{
+
+//     constructor(n,b){
+//         super(n,b)
+//         this.sunroof=true;
+//     }
+// }
+
+// class ElectricSedan extends sedan{
+//     constructor(n,b,value){
+//         super(n,b);
+//         this.Electric=value;
+//     }
+// }
+
+// let s1=new ElectricSedan("POLO","Volkswagen",true);
+// console.log("s1:", s1)
+
+
+//  another example
+
+
+// class cat {
+//     constructor(s){
+//         this.legs=4;
+//         this.tail=true;
+//         this.claws=s
+//     }
+// }
+// // let c1=new cat("sharp");
+// // console.log("c1:",c1);
+
+// class lion extends cat{
+//     constructor(s){
+//         super(s)
+//         this.furr=true;
+//     }
+// }
+// class Tiger extends lion{
+//     constructor(s){
+//         super(s)
+//     }
+// }
+// let c1=new Tiger("sharp");
+// console.log("c1:",c1)
+
+
+//2.ENCAPSULATION---> this is for the better security
+
+//getter and setter methods
+
+// class Employee{
+//     constructor(n,r){
+//         // this.name=n;
+//         // this.rating=r;
+//         var name;
+//         var rating;
+//     }
+
+//     getName(){
+//         return this.name
+//     }
+
+//     setName(value){
+//         this.name=value;
+//     }
+// }
+// let s1=new Employee ();
+// s1.setName("Harish")
+// console.log(s1.getName());
+
+// Example2 for getter setter
+
+// class Payment{
+//     constructor(u,c,p){
+//         var user;
+//         var number;
+//         var pass;
+//     }
+// getName(){
+//     return this.name;
+// }
+// getNum(){
+//     return this.number;
+// }
+// setName(value){
+//     this.name=value;
+// }
+// setNum(value){
+//     this.number=value;
+// }
+
+// }
+// let s1=new Payment();
+// s1.setName("Harish")
+// console.log(s1.getName())
+// // let s2=new Payment();
+// s1.setNum(12345678912)
+// console.log(s1.getNum())
+
+
+//3.Abstraction
+
+// class Employee{
+//     constructor(n,r){
+//         this.name=n;
+//         this.rating=r;
+//         this.skills=[]
+//     }
+
+//     learnSkill(skill){
+//         this.skills.push(skill)
+//     }
+// }
+
+// // Employee.prototype.learnskill=function(){
+
+// // }
+
+// let e1=new Employee("Harish",9);
+// e1.learnSkill("oops");
+// console.log("e1",e1);
+
+
+//4.polymorphism
+
+// class Vehicle{
+//     run(){
+//         console.log("vehicle is running");
+//     }
+// }
+
+// class Car extends Vehicle{
+//     run(){
+//         console.log("car is running")
+//     }
+// }
+
+// class Truck extends Vehicle{
+//     run(){
+//         console.log("Truck is running");
+//     }
+// }
+
+// let v1=new Vehicle();
+// let v2=new Car();
+// let v3=new Truck();
+
+// v3.run()
+
+
+// example2:
+
+class onlineBooking{
+    payment(){
+        console.log("Booking started")
+    }
+}
+
+class Transaction extends onlineBooking{
+    payment(){
+        console.log("Payment Processing")
+    }
+}
+
+class paymentDone extends Transaction{
+    payment(){
+        console.log("Payment has done successfully")
+    }
+}
+
+let p1=new onlineBooking();
+let p2=new Transaction();
+let p3=new paymentDone();
+p3.payment()
+
+</script>

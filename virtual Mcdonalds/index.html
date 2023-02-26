@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./index.css"/>
+    <script src="https://kit.fontawesome.com/9b49c92c6d.js" crossorigin="anonymous"></script>
+    <title>MC DONALD'S</title>
+    
+</head>
+<body>
+    <div class="container">
+        <div id="alertCard" class="alert displayClassNone">
+            <div class="alertCard">
+                <h1>Your order is Ready ✅</h1>
+                <div class="imgReady"></div>
+                <button id="orderCloseBtn" onclick="orderCloseBtn()">Go for Next order</button>
+            </div>
+        </div>
+        <div class="navbar">
+            <div class="logo">
+                <img src="https://images.mcdelivery.co.in/hardcastle-restaurants-pvt-ltd/image/upload/v1591261933/NewWebsiteResource2020/Assets/Img/Logo.svg" alt="">
+            </div>
+            <div class="h1">VIRTUAL MCDONALD'S  </div>
+            <div class="user"><i class="fa-solid fa-user-check"></i></div>
+        </div>
+         <div class="slider">
+            <div class="innerDIv">
+           <!-- banner goes here  -->
+            </div>
+        </div>
+        <hr> 
+        <div class="waitOrder"></div>  <!--waiting counter-->
+        
+        <div class="oderFood">
+            <div id="orderNo"><h4>Order No: <span id="orderNoCounter">0</span> &nbsp;<span id="orderMessage"></span></h4></div> 
+            <h3>Choose your food <i class="fa-solid fa-burger"></i></h3>
+            <div class="itemSec">
+                <div>
+                    <input type="checkbox" id="checkbox1"/>
+                    <label for="checkbox1"><img src="https://cdn2.howtostartanllc.com/images/business-ideas/business-idea-images/fast-food.jpg" alt=""></label>
+                    <p>Burger</p>
+                </div>
+                <div>
+                    <input type="checkbox" id="checkbox2"/>
+                    <label for="checkbox2"><img src="https://api.pizzahut.io/v1/content/en-in/in-1/images/pizza/corn.4f5188ab4391cb45d4a4ed9e849f1e32.1.jpg" alt=""></label>
+                    <p>Pizza</p>
+                </div>
+                <div>
+                    <input type="checkbox" id="checkbox3"/>
+                    <label for="checkbox3"><img src="https://img-global.cpcdn.com/recipes/2da8cad7018f8486/1200x630cq70/photo.jpg" alt=""></label>
+                    <p>Momos</p>
+                </div>
+                <div>
+                    <input type="checkbox" id="checkbox4"/>
+                    <label for="checkbox4"><img src="https://images.mcdelivery.co.in/hardcastle-restaurants-pvt-ltd/image/upload/f_auto,q_auto,w_250/v1646116928/Item/806D.png" alt=""></label>
+                    <p>Lemon juice</p>
+                </div>
+                
+            </div>
+            <button id="submit" onclick="orderFood()">Order meal</button>
+        </div> 
+    </div>
+
+    <script src="./index.js"></script>
+</body>
+</html>

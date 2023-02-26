@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>OOPS CONCEPTS</h1>
+  </body>
+</html>
+<script>
+
+  // problem1:
+
+  class cat {
+    constructor(s) {
+      this.legs = 4;
+      this.tail = true;
+      this.claws = s;
+    }
+  }
+  // let c1=new cat("sharp");
+  // console.log("c1:",c1);
+
+  class lion extends cat {
+    constructor(s) {
+      super(s);
+      this.furr = true;
+    }
+  }
+  class Tiger extends lion {
+    constructor(s) {
+      super(s);
+    }
+  }
+  let c1 = new Tiger("sharp");
+  console.log("c1:", c1);
+
+
+  //   problem2:
+
+  class Payment {
+    constructor(u, c, p) {
+      var user;
+      var number;
+      var pass;
+    }
+    getName() {
+      return this.name;
+    }
+    getNum() {
+      return this.number;
+    }
+    setName(value) {
+      this.name = value;
+    }
+    setNum(value) {
+      this.number = value;
+    }
+  }
+  let s1 = new Payment();
+  s1.setName("Harish");
+  console.log(s1.getName());
+  // let s2=new Payment();
+  s1.setNum(12345678912);
+  console.log(s1.getNum());
+
+
+//   problem3:
+
+class Employee{
+    constructor(n,r){
+        this.name=n;
+        this.rating=r;
+        this.skills=[]
+    }
+
+    learnSkill(skill){
+        this.skills.push(skill)
+    }
+}
+
+// Employee.prototype.learnskill=function(){
+
+// }
+
+let e1=new Employee("Harish",9);
+e1.learnSkill("oops");
+console.log("e1",e1);
+
+// problem4:
+
+class onlineBooking{
+    payment(){
+        console.log("Booking started")
+    }
+}
+
+class Transaction extends onlineBooking{
+    payment(){
+        console.log("Payment Processing")
+    }
+}
+
+class paymentDone extends Transaction{
+    payment(){
+        console.log("Payment has done successfully")
+    }
+}
+
+let p1=new onlineBooking();
+let p2=new Transaction();
+let p3=new paymentDone();
+p3.payment()
+
+</script>

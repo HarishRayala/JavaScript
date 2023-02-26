@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parking System</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    // llD
+    //Low level DESIGN
+    
+    //1.vehicles
+    //2.parking lot
+    //3.parking floors
+    //4.parking spots
+
+
+    class vehicle{
+        constructor(type,regNumber,color){
+            this._type=type;
+            this._regNumber=regNumber;
+            this._color=color;
+        }
+        get type(){
+            return this._type
+        }
+        set type(value){
+            this.type=value
+        }
+    
+    }
+    
+    //car,bike,truck
+    class car extends vehicle{
+        constructor(regNumber,color){
+            super("car",regNumber,color)
+        }
+    }
+    class bike extends vehicle{
+        constructor(regNumber,color){
+            super("bike",regNumber,color)
+        }
+    }
+    class truck extends vehicle{
+        constructor(regNumber,color){
+            super("truck",regNumber,color)
+        }
+    }
+
+
+//getter and setter
+// let c1=new car("MG-2379","Black")
+// console.log("c1",c1._type)
+
+//Individual parking slot
+class slot{
+    constructor(type,number){
+        this.number=number;
+        this.type=type;
+        this._isBooked=false;
+    }
+    get isBooked(){
+        return this._isBooked;
+    }
+    set isBooked(value){
+        this._isBooked=value
+    }
+}
+
+class parkingFloor {
+    constructor(floornumber,maxfloor){
+        this.floornumber=floornumber
+        this._parkingspots= []; //we need to push parking slots
+
+        for(let i=0;i<maxfloor;i++){
+            if(i===0){
+                //push truck
+                this._parkingspots.push(new slot("truck",i))
+            }
+            else if(i===1){
+                //push bikes
+                this._parkingspots.push(new slot("bikes",i))
+            }
+            else{
+                //push cars
+                this._parkingspots.push(new slot("cars",i))
+            }
+        }
+    }
+
+    get parkingspots(){
+        return this._parkingspots;
+    }
+}
+
+// let pf1=new parkingFloor(0,3);
+// console.log("pf1:",pf1)
+
+//parkingfloor has multiple slots
+//parkinglot has floors so we keep it as an array
+
+class parkingLot{
+    constructor(number){
+        this._floors=[]
+        this._numberofFloors=number;
+
+        for(let i=0;i<number;i++){
+            this._floors[i]= new parkingFloor(i,number)
+        }
+    }
+    get numberofFloors(){
+    return this._numberofFloors;
+    }
+    get floors(){
+        return this._floors;
+    }
+    set floors(value){
+        this._floors=value;
+    }
+
+    parkVehicle(vehicle){
+        let slot=this.findSlot(vehicle.type)
+        if(!slot){
+            console.log("No slots");
+            return false;
+        }
+        this.bookslot(slot);
+
+        let ticket=new Ticket(slot.floornumber.slot.slot.number)
+        console.log("TIcket is isuued", ticket)
+    }
+    findSlot(type){
+    
+        for(let i=0;i<this._numberofFloors;i++){
+            for(let slot of this._floors[i]._parkingspots){ 
+                if(slot.type === type && !slot.isBooked){
+                    console.log("slot:",slot)
+                    return{ floornumber:i,slot:slot};
+                }
+            }
+        }
+        return false;
+}
+
+bookslot(slot){
+    slot.slot.isBooked = true
+    console.log("slot is booked:", slot);
+
+    return true;
+}
+}
+
+class Ticket{
+    constructor(floorNumber,slotNumber){
+        this.floorNumber=floorNumber;
+        this.slotnumber=slotNumber;
+        this.issuedAt= new Date()
+    }
+}
+let p1= new parkingLot(3)
+// console.log("p1:",p1)
+let b1= new bike("Yamaha RE-2379", "Black")
+p1.parkVehicle(b1)
+
+</script>
+   

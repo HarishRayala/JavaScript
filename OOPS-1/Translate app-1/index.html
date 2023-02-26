@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #container{
+            display: flex;
+            border: 1px solid black;
+            background-color: teal;
+        }
+        #input, #output{
+            flex: 1;
+            margin: 5%;
+            height: 300px;
+            border: 1px solid black;
+            background-color: bisque;
+        }
+        #input-text{
+            width: 90%;
+            height:270px;
+            background-color: bisque;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="input">
+            <select name="inp_lang" id="inp_lang">
+                <option value="en">English</option>
+                <option value="hi">Hindi</option>
+            </select>
+            <button onclick="Translate()">Translate</button>
+            <textarea name="input-text" id="input-text" ></textarea>
+
+        </div>
+
+        <div id="output">
+            <select name="out_lang" id="out_lang">
+                <option value="en">English</option>
+                <option value="hi">Hindi</option>
+            </select>
+            <p id="output_value"></p>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+
+    function read(id){
+        return document.getElementById(id).value
+    }
+
+    async function Translate(){
+
+        //1.text to translate
+
+        try{
+        const input= read("input-text");
+        // console.log("input:",input);
+
+        const input_lang=read("inp_lang");
+        const out_lang=read("out_lang");
+
+        //Post Request
+        //api: https://libretranslate.de/translate
+
+        const res= await fetch("https://libretranslate.de/translate", {
+
+            method:"POST",
+
+            body: JSON.stringify({
+                q: input,  //we have to keep the keys as in the api
+                source:input_lang,
+                target:out_lang,
+                format:"text",
+            }),
+
+            //additional information abt request that server might needed to know
+            headers:{
+                "Content-Type":'application/json'
+            },
+
+        });
+
+        // const data=await res.json(); or
+        const {translatedText} = await res.json();
+        //or we can write as const (translatedtext)=await res.json();--->so by this we dont need to write
+        //.innertext= data.translatedText we can write only translatedText
+
+        document.getElementById('output_value').innerText=translatedText;
+        // console.log("data:",data);
+    } catch (err){
+        console.log("err:",err)
+    }
+}
+
+
+</script>
